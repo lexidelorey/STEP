@@ -19,9 +19,9 @@ function addFortune() {
   const fortunes =
       ['You will meet someone of importance to your future today', 
             'Make sure to speak your truth today.', 
-            'The planets are totally alligned against you today', 
+            'The planets are totally aligned against you today', 
             'You look very pretty today :)', 
-            'Your lucky word today is "watermellon"', 
+            'Your lucky word today is "watermelon"', 
             'The word of the day is "patience"'];
 
   // Pick a random greeting.
