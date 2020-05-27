@@ -1,9 +1,36 @@
+body {
+  background-color: hsla(293, 50%, 50%, 0.644);
+}
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 700px;
+  color: white;
+  font-family: Helvetica;
 }
 
 #greeting-container {
   margin-top: 20px;
+}
+
+.title {
+    font-family: Helvetica;
+    color: white;
+    font-size: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+.profImage {
+    width=auto;
+    height=150px;
+    vertical-align:top;
+    float: right;
+}
+
+table, td {
+  color: white;
+  border: 1px solid white;
+  font-family: "Lucida Console", Monaco, monospace
+  text-align: center;
 }
