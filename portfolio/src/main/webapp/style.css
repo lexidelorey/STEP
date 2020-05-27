@@ -1,7 +1,7 @@
 body {
   background-color: hsla(293, 50%, 50%, 0.644);
 }
-#content {
+.content {
   margin-left: auto;
   margin-right: auto;
   width: 700px;
