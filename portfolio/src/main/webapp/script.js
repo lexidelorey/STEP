@@ -15,14 +15,19 @@
 /**
  * Adds a random greeting to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function addFortune() {
+  const fortunes =
+      ['You will meet someone of importance to your future today', 
+            'Make sure to speak your truth today.', 
+            'The planets are totally aligned against you today', 
+            'You look very pretty today :)', 
+            'Your lucky word today is "watermelon"', 
+            'The word of the day is "patience"'];
 
   // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const fortuneContainer = document.getElementById('fortune-container');
+  fortuneContainer.innerText = fortune;
 }
