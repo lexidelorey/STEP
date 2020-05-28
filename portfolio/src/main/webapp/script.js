@@ -59,17 +59,14 @@ images[19] = "./Images/Giraffe.jpg";
 images[20] = "./Images/Sunset.jpg";
 
 function rotateImages() {
-    document.slide.src = images[i];
-
-    if (i < images.length - 1) {
-        ++i;
-    } else {
-        i = 0;
-    }
-
-    setTimeout("rotateImages()", time);
+  document.slide.src = images[i];
+  
+  if (i < images.length - 1) {
+    ++i;
+  } 
+  else {
+    i = 0;
+  }
+  
+  setTimeout("rotateImages()", time);
 }
-
-
-
-
