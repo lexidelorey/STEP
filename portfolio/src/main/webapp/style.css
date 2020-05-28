@@ -14,32 +14,25 @@ body {
 }
 
 .title {
-    font-family: Helvetica;
-    color: white;
-    font-size: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000px;
+  font-family: Helvetica;
+  color: white;
+  font-size: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1000px;
 }
 .profImage {
-    width=auto;
-    height=150px;
-    vertical-align:top;
-    float: right;
+  width=auto;
+  height=150px;
+  vertical-align:top;
+  float: right;
 }
 
 .travel-pic {
-    width=auto;
-    height=150px;
-    vertical-align:top;
-    float: right;
-}
-
-.travel-pic-left {
-    width=auto;
-    height=150px;
-    vertical-align:top;
-    float: left;
+  width=au
+  height=150px;
+  vertical-align:top;
+  float: right;
 }
 
 tr {
@@ -49,7 +42,6 @@ tr {
 }
 
 table, td {
-  
   color: rgb(161, 163, 228);
   font-family: "Lucida Console", Monaco, monospace
   text-align: center;
