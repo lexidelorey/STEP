@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload = "rotateImages()">
     <table>
         <tr>
-            <th>About Me</th>
-            <th>Past Projects</th>
-            <th>Travel!</th>
-            <th>Fortune Teller</th>
+            <th><a href=#"about-me">About Me</a></th>
+            <th><a href="#past-projects">Past Projects</a></th>
+            <th><a href="#travel">Travel!</a></th>
+            <th><a href="#fortune-container">Fortune Teller</a></th>
         </tr>
     </table>
     <h1 class="title">
@@ -55,6 +55,22 @@
                 <li>Using Quicksort to sort data recursively</li>
                 <li>Reusing my Binary Search Tree to Create an AVL tree</li>
             </ul>
-            <p>Please refer to my GitHub if you would like to see the code behind my projects</p>
+            <p>Please refer to my <a href="github.com.lexidelorey" targer=_blank>
+                GitHub</a> if you would like to see the code behind my projects</p>
+    </div>
+    <h1 class="title">
+        <img class="travel-pic" src="./Images/GoogleMilan.jpg" 
+        alt="Lexi at Google Milan"width="500" height="400">
+        I REALLY <br>
+        Love To<br>
+        Travel!
+      </h1>
+    <div id="travel" class="content">
+        <p>I've been a lot of cool places, and there are even more places
+            that I'm dying to visit! Enjoy some photos from my trips!
+            <br><br> Photos featured here are from trips to Italy, Thailand
+            and South Africa. Fair warning, there are a TON of elephant
+            pictures. I love elephants. </p>
+        <img name="slide" width ="500" height="500">
   </body>
 </html>
