@@ -2,18 +2,18 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Lexi Delorey's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload = "rotateImages()">
     <table>
-        <tr>
-            <th>About Me</th>
-            <th>Past Projects</th>
-            <th>Travel!</th>
-            <th>Fortune Teller</th>
-        </tr>
+      <tr>
+        <th><a href="#about-me">About Me</a></th>
+        <th><a href="#past-projects">Past Projects</a></th>
+        <th><a href="#travel">Travel!</a></th>
+        <th><a href="#fortune-container">Fortune Teller</a></th>
+      </tr>
     </table>
     <h1 class="title">
       <image class="profImage" src="./Images/Lexi.jpg" alt="Photo of Lexi Delorey" />
@@ -22,8 +22,8 @@
       Portfolio
     </h1>
     <div id= "about-me" class="content">
-        <h2>About Me</h2>
-        <p>I am a rising sophomore at Brigham Young University, where I am studying
+      <h2>About Me</h2>
+      <p>I am a rising sophomore at Brigham Young University, where I am studying
       Computer Science with an emphasis on Data Science. <br><br>
       During the school year I work as a research assistant in the 
       <a href="https://pcc.cs.byu.edu/" target=_blank> Perception, Control, Cognition</a> 
@@ -39,22 +39,39 @@
       <div id="fortune-container"></div>
     </div>
     <div id=past-projects class=content>
-        <h2>Past Projects</h2>
-            <p>Some of my past projects include:</p>
-            <ul>
-                <li>Singly and Doubly Linked Lists</li>
-                <li>Creading and Implementing Iterators in Linked Lists</li>
-                <li>Using STL Stack to convert expressions from infix to 
-                    post/prefix and computing said expressions</li>
-                <li>Creating and implementing a Deque, Queue, Stack, and Vector to 
-                    simulate a Roundhouse and Turntable for trains</li>
-                <li>Solving a user-input 3D maze using recursion</li>
-                <li>Creating a Binary Search Tree</li>
-                <li>Creating an Unordered Hashmap and Ordered Set to simulate Pokemon 
-                    battles</li>
-                <li>Using Quicksort to sort data recursively</li>
-                <li>Reusing my Binary Search Tree to Create an AVL tree</li>
-            </ul>
-            <p>Please refer to my GitHub if you would like to see the code behind my projects</p>
+      <h2>Past Projects</h2>
+        <p>Some of my past projects include:</p>
+          <ul>
+            <li>Singly and Doubly Linked Lists</li>
+            <li>Creading and Implementing Iterators in Linked Lists</li>
+            <li>Using STL Stack to convert expressions from infix to 
+                post/prefix and computing said expressions</li>
+            <li>Creating and implementing a Deque, Queue, Stack, and Vector to 
+                simulate a Roundhouse and Turntable for trains</li>
+            <li>Solving a user-input 3D maze using recursion</li>
+            <li>Creating a Binary Search Tree</li>
+            <li>Creating an Unordered Hashmap and Ordered Set to simulate Pokemon 
+                battles</li>
+            <li>Using Quicksort to sort data recursively</li>
+            <li>Reusing my Binary Search Tree to Create an AVL tree</li>
+          </ul>
+        <p>Please refer to my <a href="https://github.com/lexidelorey" targer=_blank>
+                GitHub</a> if you would like to see the code behind my projects</p>
+    </div>
+    <h1 class="title">
+      <img class="travel-pic" src="./Images/GoogleMilan.jpg" 
+           alt="Lexi at Google Milan"width="500" height="400">
+      I REALLY <br>
+      Love To<br>
+      Travel!
+    </h1>
+    <div id="travel" class="content">
+      <p>I've been a lot of cool places, and there are even more places
+         that I'm dying to visit! Enjoy some photos from my trips!
+         <br><br> Photos featured here are from trips to Italy, Thailand
+         and South Africa. Fair warning, there are a TON of elephant
+         pictures. I love elephants. </p>
+      <img name="slide" width ="500" height="500">
+    </div>
   </body>
 </html>

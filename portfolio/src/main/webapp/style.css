@@ -1,10 +1,10 @@
 body {
-  background-color: hsla(293, 50%, 50%, 0.644);
+  background-color: hsla(303, 50%, 50%, 0.274);
 }
 .content {
   margin-left: auto;
   margin-right: auto;
-  width: 700px;
+  width: 800px;
   color: white;
   font-family: Helvetica;
 }
@@ -14,23 +14,39 @@ body {
 }
 
 .title {
-    font-family: Helvetica;
-    color: white;
-    font-size: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1000px;
+  font-family: Helvetica;
+  color: white;
+  font-size: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1000px;
 }
 .profImage {
-    width=auto;
-    height=150px;
-    vertical-align:top;
-    float: right;
+  width=auto;
+  height=150px;
+  vertical-align:top;
+  float: right;
+}
+
+.travel-pic {
+  width=au
+  height=150px;
+  vertical-align:top;
+  float: right;
+}
+
+tr {
+  background: white;
+  border-bottom: 1px solid rgb(202, 194, 194);
+  margin-bottom: 5px;
 }
 
 table, td {
-  color: white;
-  border: 1px solid white;
+  color: rgb(161, 163, 228);
   font-family: "Lucida Console", Monaco, monospace
   text-align: center;
+}
+
+a:link th {
+  color: rgb(161, 163, 228);
 }
