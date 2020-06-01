@@ -54,8 +54,23 @@ function rotateImages() {
   setTimeout("rotateImages()", time);
 }
 
-async function getLexi() {
-  const response = await fetch('/data');
-  const data = await response.text();
-  document.getElementById('data-container').innerText = data;
+function getCommentsUsingArrows() {
+  fetch('/data').then(response => response.json()).then((comments) => {
+    commentsList = document.getElementById('comment-container');
+    commentsList.innterHTML = '';
+    commentsList.appendChild(
+      createListElement(comments[0]));
+    commentsList.appendChild(
+      createListElement(comments[1]));
+    commentsList.appendChild(
+      createListElement(comments[2]));
+    commentsList.appendChild(
+      createListElement(comments[3]));
+  });
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
