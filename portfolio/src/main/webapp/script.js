@@ -58,10 +58,10 @@ function getCommentsUsingArrows() {
   fetch('/data')
     .then(response => response.json())
     .then((comments) => {
-    commentsList = document.getElementById('comment-container');
-    commentsList.innerHTML = '';
-    comments.forEach((comment) => {
-      commentsList.appendChild(createListElement(comment))});
+      commentsList = document.getElementById('comment-container');
+      commentsList.innerHTML = '';
+      comments.forEach((comment) => {
+        commentsList.appendChild(createListElement(comment))});
   });
 }
 
