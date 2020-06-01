@@ -22,10 +22,9 @@
       Portfolio
     </h1>
     <div id= "about-me" class="content">
-      <div id="fortune-container">
-        <p>Click here to get a fortune!</p>
-        <button class="button" onclick="addFortune()">Fortune</button>
-      </div>
+      <p>Click here to get a fortune!</p>
+      <button class="button" onclick="addFortune()">Fortune</button>
+      <div id="fortune-container"></div>
       <h2>About Me</h2>
       <p>I am a rising sophomore at Brigham Young University, where I am studying
       Computer Science with an emphasis on Data Science. <br><br>
@@ -74,8 +73,11 @@
          pictures. I love elephants. </p>
       <img name="slide" width="auto" height="500">
     </div>
-    <div id="data-container">
-      <button class="button" onclick="getLexi()">Hello!</button>
+    <div id="comments" class="content">
+      <h2>Comments</h2>
+      <p>Click below to see comments!</p>
+      <button class="button" onclick="getCommentsUsingArrows()">Comments</button>
+      <div id="comment-container"></div>
     </div>
   </body>
 </html>

@@ -54,8 +54,19 @@ function rotateImages() {
   setTimeout("rotateImages()", time);
 }
 
-async function getLexi() {
-  const response = await fetch('/data');
-  const data = await response.text();
-  document.getElementById('data-container').innerText = data;
+function getCommentsUsingArrows() {
+  fetch('/data')
+    .then(response => response.json())
+    .then((comments) => {
+      commentsList = document.getElementById('comment-container');
+      commentsList.innerHTML = '';
+      comments.forEach((comment) => {
+        commentsList.appendChild(createListElement(comment))});
+  });
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
