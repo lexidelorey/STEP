@@ -55,17 +55,13 @@ function rotateImages() {
 }
 
 function getCommentsUsingArrows() {
-  fetch('/data').then(response => response.json()).then((comments) => {
+  fetch('/data')
+    .then(response => response.json())
+    .then((comments) => {
     commentsList = document.getElementById('comment-container');
-    commentsList.innterHTML = '';
-    commentsList.appendChild(
-      createListElement(comments[0]));
-    commentsList.appendChild(
-      createListElement(comments[1]));
-    commentsList.appendChild(
-      createListElement(comments[2]));
-    commentsList.appendChild(
-      createListElement(comments[3]));
+    commentsList.innerHTML = '';
+    comments.forEach((comment) => {
+      commentsList.appendChild(createListElement(comment))});
   });
 }
 
