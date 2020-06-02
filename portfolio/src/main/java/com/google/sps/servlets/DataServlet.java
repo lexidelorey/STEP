@@ -40,6 +40,11 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String text = request.getParameter("comment");
     comments.add(text);
+
+    response.setContentType("text/html;");
+    response.getWriter()
+            .println("Thank you for your comment! Redirecting you back to portfolio...");
+    response.sendRedirect("/index.html"); 
   }
   
   private String convertToJson(List<String> comments) {
