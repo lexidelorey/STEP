@@ -39,7 +39,7 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String text = request.getParameter("comment");
-      comments.add(text);
+    comments.add(text);
   }
   
   private String convertToJson(List<String> comments) {
