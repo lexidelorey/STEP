@@ -27,16 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private List<String> comments;
-
-  @Override
-  public void init() {
-    comments = new ArrayList<String>();
-    comments.add("Fabulous");
-    comments.add("Seriously, best work I've ever seen");
-    comments.add("This generation's rising star");
-    comments.add("Wow. All I have to say");
-  }
+  private List<String> comments = new ArrayList<>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -44,10 +35,23 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
+  
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String text = request.getParameter("comment");
+    comments.add(text);
 
-  private String convertToJson(ArrayList<String> comments) {
+    response.setContentType("text/html;");
+    response.getWriter()
+            .println("Thank you for your comment! Redirecting you back to portfolio...");
+    response.sendRedirect("/index.html"); 
+  }
+  
+  private String convertToJson(List<String> comments) {
     Gson gson = new Gson();
     String json = gson.toJson(comments);
     return json;
   }
+
+
 }
