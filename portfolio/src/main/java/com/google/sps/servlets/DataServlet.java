@@ -19,6 +19,10 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,15 +31,21 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+
+  private static final String COMMENT_ENTITY_KEY = "Comment";
+  private static final String COMMENT_PROPERTY_NAME = "comment";
+  private static final String TIME_PROPERTY_NAME = "dateTime";
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String text = request.getParameter("comment");
+    String text = request.getParameter(COMMENT_PROPERTY_NAME);
     long time = System.currentTimeMillis();
+    SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+    Date dateTime = new Date(System.currentTimeMillis());
 
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("comment", text);
-    commentEntity.setProperty("time", time);
+    Entity commentEntity = new Entity(COMMENT_ENTITY_KEY);
+    commentEntity.setProperty(COMMENT_PROPERTY_NAME, text);
+    commentEntity.setProperty(TIME_PROPERTY_NAME, dateTime);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
