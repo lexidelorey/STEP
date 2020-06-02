@@ -14,10 +14,15 @@
 
 package com.google.sps.servlets;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,31 +32,29 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private List<String> comments = new ArrayList<>();
-
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = convertToJson(comments);
-    response.setContentType("application/json;");
-    response.getWriter().println(json);
-  }
+  private static final String COMMENT_ENTITY_KEY = "Comment";
+  private static final String COMMENT_PROPERTY_NAME = "comment";
+  private static final String TIME_PROPERTY_NAME = "dateTime";
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String text = request.getParameter("comment");
-    comments.add(text);
+    String text = request.getParameter(COMMENT_PROPERTY_NAME);
+    long time = System.currentTimeMillis();
+    SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+    Date dateTime = new Date(System.currentTimeMillis());
+
+    Entity commentEntity = new Entity(COMMENT_ENTITY_KEY);
+    commentEntity.setProperty(COMMENT_PROPERTY_NAME, text);
+    commentEntity.setProperty(TIME_PROPERTY_NAME, dateTime);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
 
     response.setContentType("text/html;");
     response.getWriter()
             .println("Thank you for your comment! Redirecting you back to portfolio...");
     response.sendRedirect("/index.html"); 
-  }
-  
-  private String convertToJson(List<String> comments) {
-    Gson gson = new Gson();
-    String json = gson.toJson(comments);
-    return json;
-  }
 
+  }
 
 }
