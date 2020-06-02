@@ -18,8 +18,7 @@
     <h1 class="title">
       <image class="profImage" src="./Images/Lexi.jpg" alt="Photo of Lexi Delorey" />
       Lexi <br>
-      Delorey's <br>
-      Portfolio
+      Delorey <br>
     </h1>
     <div id= "about-me" class="content">
       <p>Click here to get a fortune!</p>
@@ -75,7 +74,15 @@
     </div>
     <div id="comments" class="content">
       <h2>Comments</h2>
-      <p>Click below to see comments!</p>
+      <p> I hope you enjoyed my portfolio! I would love to hear from you!
+          Please leave a comment below letting me know what you thought/
+          suggestions you may have for me!</p>
+      <form action="/data" method=POST>
+        <textarea name="comment">Comment...</textarea>
+        <br/><br/>
+        <input type="submit" value="Submit">
+      </form>
+      <p>Click below to see comments left by others!</p>
       <button class="button" onclick="getCommentsUsingArrows()">Comments</button>
       <div id="comment-container"></div>
     </div>
