@@ -55,18 +55,23 @@ function rotateImages() {
 }
 
 function getCommentsUsingArrows() {
-  fetch('/data')
+  fetch('/data') 
     .then(response => response.json())
     .then((comments) => {
       commentsList = document.getElementById('comment-container');
       commentsList.innerHTML = '';
       comments.forEach((comment) => {
-        commentsList.appendChild(createListElement(comment))});
+        commentsList.appendChild(createCommentElement(comment))});
   });
 }
 
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'comment';
+
+  const userCommentElement = document.createElement('span')
+  userCommentElement.innerText = comment.comment;
+
+  commentElement.appendChild(userCommentElement);
+  return commentElement;
 }

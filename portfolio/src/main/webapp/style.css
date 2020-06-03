@@ -15,6 +15,12 @@ h2 {
   font-family: Helvetica;
 }
 
+h3 {
+  font-size: 25px;
+  color: rgba(128, 128, 128, 0.24);
+  font-family: Helvetica;
+}
+
 #greeting-container {
   margin-top: 20px;
 }

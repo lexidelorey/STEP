@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload = "rotateImages()">
+  <body onload = "rotateImages()";"getCommentsUsingArrows()">
     <table>
       <tr>
         <th><a href="#about-me">About Me</a></th>
@@ -80,10 +80,9 @@
       <form action="/data" method="post" target="_self">
         <textarea name="comment" placeholder="Comment..."></textarea>
         <br/><br/>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" >
       </form>
-      <p>Click below to see comments left by others!</p>
-      <button class="button" onclick="getCommentsUsingArrows()">Comments</button>
+        <script>getCommentsUsingArrows()</script>
       <div id="comment-container"></div>
     </div>
   </body>
