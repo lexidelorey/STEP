@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload = "rotateImages()">
+  <body onload="rotateImages()">
     <table>
       <tr>
         <th><a href="#about-me">About Me</a></th>
@@ -77,14 +77,19 @@
       <p> I hope you enjoyed my portfolio! I would love to hear from you!
           Please leave a comment below letting me know what you thought/
           suggestions you may have for me!</p>
-      <form action="/data" method="post" target="_self">
+      <form action="/data" method="POST" target="_self">
         <textarea name="comment" placeholder="Comment..."></textarea>
         <br/><br/>
         <input type="submit" value="Submit">
       </form>
-      <p>Click below to see comments left by others!</p>
-      <button class="button" onclick="getCommentsUsingArrows()">Comments</button>
-      <div id="comment-container"></div>
+      <h3>Other Comments:</h3>        
+      <p>Choose how many comments you would like displayed:</p>
+        <form>
+          <label for="number-comments">(Between 1 and 30):</label>
+          <input type="number" onchange="getCommentsUsingArrows()" 
+                 id="number-comments" name="number-comments" min="1" max="25">
+        </form>
+        <div id="comment-container"></div>
     </div>
   </body>
 </html>
