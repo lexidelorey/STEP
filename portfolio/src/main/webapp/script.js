@@ -79,3 +79,9 @@ function createCommentElement(comment) {
   return commentElement;
 }
 
+function deleteComments() {
+    const request = new Request('/delete-comment', {method: 'POST'});
+    fetch(request)
+      .then(getComments());
+} 
+

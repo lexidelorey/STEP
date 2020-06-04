@@ -84,10 +84,12 @@
       </form>
       <h3>Other Comments:</h3>        
       <p>Choose how many comments you would like displayed:</p>
+      <button onclick="deleteComments()">Delete Comments</button>
         <form>
           <label for="number-comments">(Between 1 and 30):</label>
-          <input type="number" onchange="getCommentsUsingArrows()" 
-                 id="number-comments" name="number-comments" min="1" max="25">
+          <input type="number" id="number-comments" name="number-comments" 
+                 min="1" max="25">
+          <input type="button" value="Submit" onclick="getComments()">
         </form>
         <div id="comment-container"></div>
     </div>

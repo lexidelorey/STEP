@@ -53,11 +53,10 @@ public class DataServlet extends HttpServlet {
 
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      long id = entity.getKey().getId();
       String text = (String) entity.getProperty(COMMENT_PROPERTY_NAME);
       Date dateTimeCreated = (Date) entity.getProperty(TIME_PROPERTY_NAME);
 
-      Comment userComment = new Comments(id, text, dateTimeCreated);
+      Comment userComment = new Comment(text, dateTimeCreated);
       comments.add(userComment);
     }
 
@@ -69,7 +68,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String userComment = request.getParameter(COMMENT_PARAM_NAME );
+    String userComment = request.getParameter(COMMENT_PARAM_NAME);
     SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     Date dateTimeCreated = new Date(System.currentTimeMillis());
 
