@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.sps.data.Comments;
+import com.google.sps.data.Comment;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -41,22 +41,23 @@ public class DataServlet extends HttpServlet {
   private static final String COMMENT_ENTITY_KEY = "Comment";
   private static final String COMMENT_PROPERTY_NAME = "userComment";
   private static final String TIME_PROPERTY_NAME = "dateTimeCreated";
+  private static final String COMMENT_PARAM_NAME = "comment";
   
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query(COMMENT_ENTITY_KEY)
-                  .addSort("dateTimeCreated", SortDirection.DESCENDING);
+                  .addSort(TIME_PROPERTY_NAME, SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    List<Comments> comments = new ArrayList<>();
+    List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
       String text = (String) entity.getProperty(COMMENT_PROPERTY_NAME);
       Date dateTimeCreated = (Date) entity.getProperty(TIME_PROPERTY_NAME);
 
-      Comments userComment = new Comments(id, text, dateTimeCreated);
+      Comment userComment = new Comments(id, text, dateTimeCreated);
       comments.add(userComment);
     }
 
@@ -68,13 +69,13 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String userComment = request.getParameter("comment");
+    String userComment = request.getParameter(COMMENT_PARAM_NAME );
     SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     Date dateTimeCreated = new Date(System.currentTimeMillis());
 
     Entity commentEntity = new Entity(COMMENT_ENTITY_KEY);
-    commentEntity.setProperty("userComment", userComment);
-    commentEntity.setProperty("dateTimeCreated", dateTimeCreated);
+    commentEntity.setProperty(COMMENT_PROPERTY_NAME, userComment);
+    commentEntity.setProperty(TIME_PROPERTY_NAME, dateTimeCreated);
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);

@@ -54,14 +54,17 @@ function rotateImages() {
   setTimeout("rotateImages()", time);
 }
 
-function getCommentsUsingArrows() {
+function getComments() {
+  var value = document.getElementById('number-comments').value
   fetch('/data') 
     .then(response => response.json())
     .then((comments) => {
       commentsList = document.getElementById('comment-container');
       commentsList.innerHTML = '';
-      comments.forEach((comment) => {
-        commentsList.appendChild(createCommentElement(comment))});
+      var i;
+      for (i = 0; i < value; i++) {
+        commentsList.appendChild(createCommentElement(comments[i]));
+      }
   });
 }
 
@@ -69,9 +72,10 @@ function createCommentElement(comment) {
   const commentElement = document.createElement('li');
   commentElement.className = 'comment';
 
-  const userCommentElement = document.createElement('span')
-  userCommentElement.innerText = comment.comment;
+  const commentBody = document.createElement('span')
+  commentBody.innerText = comment.comment;
 
-  commentElement.appendChild(userCommentElement);
+  commentElement.appendChild(commentBody);
   return commentElement;
 }
+
