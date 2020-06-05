@@ -25,7 +25,7 @@ h3 {
   margin-top: 20px;
 }
 
-.button {
+#fortune .button {
   font-size: 10px;
   padding: 14px 40px;
   background-color: #CCCCFF;
@@ -46,14 +46,14 @@ h3 {
 .profImage {
   width=auto;
   height=150px;
-  vertical-align:top;
+  vertical-align: top;
   float: right;
 }
 
 .travel-pic {
   width=au
   height=150px;
-  vertical-align:top;
+  vertical-align: top;
   float: right;
 }
 
@@ -71,4 +71,33 @@ table, td {
 
 a:link th {
   color: rgb(161, 163, 228);
+}
+
+textarea {
+    color: white;
+    background-color:rgb(146, 159, 235);
+}
+
+#comment-container h3 {
+    color: white;
+    font-size: 20px;
+}
+
+#comment-container h6{
+    color: rgba(128, 128, 128, 0.411);
+    font-size: 10px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#comment-container h4 {
+    color: white;
+    font-family: "Times New Roman";
+    font-size: 30px;
+    margin: 10px;
+    padding: 5px;
+}
+
+#comment-container {
+  background-color: rgba(146, 159, 235, 0.4);
 }
