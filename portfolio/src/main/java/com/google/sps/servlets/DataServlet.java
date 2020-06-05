@@ -29,21 +29,22 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.TimeZone;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static constants.DataStoreHelper.COMMENT_ENTITY_KEY;
+import static constants.DataStoreHelper.COMMENT_PROPERTY_NAME;
+import static constants.DataStoreHelper.TIME_PROPERTY_NAME;
+import static constants.DataStoreHelper.COMMENT_PARAM_NAME;
+import static constants.DataStoreHelper.NAME_PARAM;
+import static constants.DataStoreHelper.NAME_PROPERTY;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
-  private static final String COMMENT_ENTITY_KEY = "Comment";
-  private static final String COMMENT_PROPERTY_NAME = "userComment";
-  private static final String TIME_PROPERTY_NAME = "dateTimeCreated";
-  private static final String COMMENT_PARAM_NAME = "comment";
-  
-
+    
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query(COMMENT_ENTITY_KEY)
@@ -53,10 +54,12 @@ public class DataServlet extends HttpServlet {
 
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      String text = (String) entity.getProperty(COMMENT_PROPERTY_NAME);
+      long id = entity.getKey().getId();
+      String name = (String) entity.getProperty(NAME_PROPERTY);
+      String comment = (String) entity.getProperty(COMMENT_PROPERTY_NAME);
       Date dateTimeCreated = (Date) entity.getProperty(TIME_PROPERTY_NAME);
 
-      Comment userComment = new Comment(text, dateTimeCreated);
+      Comment userComment = new Comment(id, name, comment, dateTimeCreated);
       comments.add(userComment);
     }
 
@@ -68,11 +71,14 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String name = request.getParameter(NAME_PARAM);
     String userComment = request.getParameter(COMMENT_PARAM_NAME);
     SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+    format.setTimeZone(TimeZone.getTimeZone("PST"));
     Date dateTimeCreated = new Date(System.currentTimeMillis());
 
     Entity commentEntity = new Entity(COMMENT_ENTITY_KEY);
+    commentEntity.setProperty(NAME_PROPERTY, name);
     commentEntity.setProperty(COMMENT_PROPERTY_NAME, userComment);
     commentEntity.setProperty(TIME_PROPERTY_NAME, dateTimeCreated);
     

@@ -13,6 +13,7 @@
         <th><a href="#past-projects">Past Projects</a></th>
         <th><a href="#travel">Travel!</a></th>
         <th><a href="#fortune-container">Fortune Teller</a></th>
+        <th><a href="#comment-container">Comments</a></th>
       </tr>
     </table>
     <h1 class="title">
@@ -20,10 +21,10 @@
       Lexi <br>
       Delorey <br>
     </h1>
+    <div id="fortune-container" class=></div>
+    <p>Click here to get a fortune!</p>
+    <button id ="fortune" class="button" onclick="addFortune()">Fortune</button>
     <div id= "about-me" class="content">
-      <p>Click here to get a fortune!</p>
-      <button class="button" onclick="addFortune()">Fortune</button>
-      <div id="fortune-container"></div>
       <h2>About Me</h2>
       <p>I am a rising sophomore at Brigham Young University, where I am studying
       Computer Science with an emphasis on Data Science. <br><br>
@@ -41,6 +42,8 @@
       <h2>Past Projects</h2>
         <p>Some of my past projects include:</p>
           <ul>
+            <li>Designing a 2D maze and teaching an "agent" to navigate said maze
+                using the Q-learing algorithm</li>
             <li>Singly and Doubly Linked Lists</li>
             <li>Creading and Implementing Iterators in Linked Lists</li>
             <li>Using STL Stack to convert expressions from infix to 
@@ -78,9 +81,11 @@
           Please leave a comment below letting me know what you thought/
           suggestions you may have for me!</p>
       <form action="/data" method="POST" target="_self">
+        <textarea name="name" placeholder="Name..."></textarea>
+        <br>
         <textarea name="comment" placeholder="Comment..."></textarea>
         <br/><br/>
-        <input type="submit" value="Submit">
+        <input class="submit" type="submit" value="Submit">
       </form>
       <h3>Other Comments:</h3>        
       <p>Choose how many comments you would like displayed:</p>
@@ -88,8 +93,8 @@
         <form>
           <label for="number-comments">(Between 1 and 30):</label>
           <input type="number" id="number-comments" name="number-comments" 
-                 min="1" max="25">
-          <input type="button" value="Submit" onclick="getComments()">
+                 min="1" max="30">
+          <input class="submit" type="button" value="Submit" onclick="getComments()">
         </form>
         <div id="comment-container"></div>
     </div>

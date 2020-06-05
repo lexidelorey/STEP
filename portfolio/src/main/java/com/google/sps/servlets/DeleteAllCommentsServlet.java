@@ -12,14 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static constants.DataStoreHelper.COMMENT_ENTITY_KEY;
 
 /** Servlet responsible for deleting comments. */
-@WebServlet("/delete-comment")
-public class DeleteCommentServlet extends HttpServlet {
-
-  private static final String COMMENT_ENTITY_KEY = "Comment";
-  private static final String COMMENT_PROPERTY_NAME = "userComment";
-  private static final String TIME_PROPERTY_NAME = "dateTimeCreated";
+@WebServlet("/delete-all-comments")
+public class DeleteAllCommentsServlet extends HttpServlet {
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query(COMMENT_ENTITY_KEY);

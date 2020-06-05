@@ -69,19 +69,42 @@ function getComments() {
 }
 
 function createCommentElement(comment) {
-  const commentElement = document.createElement('li');
+  const commentElement = document.createElement('h5');
   commentElement.className = 'comment';
 
-  const commentBody = document.createElement('span')
-  commentBody.innerText = comment.comment;
+  const userName = document.createElement('h3');
+  userName.innerText = comment.name;
 
-  commentElement.appendChild(commentBody);
+  const dateTime = document.createElement('h6' ,'span');
+  dateTime.innerText = comment.dateTime
+  userName.appendChild(dateTime);
+
+  const commentBody = document.createElement('h4')
+  commentBody.innerText = comment.comment;
+  userName.appendChild(commentBody);
+
+  const deleteButton = document.createElement('button');
+  deleteButton.innerText = 'Delete';
+  deleteButton.addEventListener('click', () => {
+    deleteSingleComment(comment);
+    commentElement.remove();
+  });
+
+  commentElement.appendChild(userName);
+  commentElement.appendChild(deleteButton);
   return commentElement;
 }
 
-function deleteComments() {
-    const request = new Request('/delete-comment', {method: 'POST'});
+function deleteAllComments() {
+    const request = new Request('/delete-all-comments', {method: 'POST'});
     fetch(request)
       .then(getComments());
 } 
+
+function deleteSingleComment(comment) {
+  const params = new URLSearchParams();
+  params.append('id', comment.id);
+  fetch('/delete-single-comment', {method: 'POST', body: params})
+    .then(getComments());
+}
 
