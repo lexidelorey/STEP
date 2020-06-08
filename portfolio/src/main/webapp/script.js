@@ -110,3 +110,41 @@ function deleteSingleComment(comment) {
     .then(getComments());
 }
 
+function createMap() {
+  var myLatlng = new google.maps.LatLng(13.7563, 100.5018);
+  var mapOptions = {
+    zoom: 2,
+    center: myLatlng,
+    mapTypeId: 'hybrid'
+  };
+  //photo locations 
+  var cinqueTerre = {lat: 44.1461, lng: 9.6439};
+  var googleMilan = {lat: 45.486183, lng: 9.189545};
+  var watSaket = {lat: 13.7538, lng: 100.5066};
+  var watPho = {lat: 13.7466, lng: 100.4933};
+  var googleThailand = {lat: 13.742671, lng: 100.548082};
+  var antaraGoldenTriangle = {lat: 20.367355, lng: 100.077086};
+  var malaMala = {lat: -24.800415, lng: 31.540408};
+  var vAWaterfront = {lat: -33.903594, lng:18.420915};
+  var lightHouse = {lat: -34.356695, lng:18.497123};
+  //map
+  var map = new google.maps.Map(document.getElementById('map'),
+      mapOptions);
+
+  //markers
+  var watSaketMarker = new google.maps.Marker({position: watSaket, map: map});
+  var cinqueTerreMarker = new google.maps.Marker({position: cinqueTerre, map: map});
+  var googleMilanMarker = new google.maps.Marker({position: googleMilan, map: map});
+  var watPhoMarker = new google.maps.Marker({position: watPho, map: map});
+  var googleThailandMarker = new google.maps.Marker({position: googleThailand, map: map});
+  var malaMalaMarker = new google.maps.Marker({position: malaMala, map: map});
+  var antaraGoldenTriangleMarker = new google.maps.Marker({position: antaraGoldenTriangle, map: map});
+  var vAWaterfrontMarker = new google.maps.Marker({position: vAWaterfront, map: map});
+  var lightHouseMarker = new google.maps.Marker({position: lightHouse, map: map});
+}
+
+function onLoad() {
+  createMap();
+  rotateImages();
+}
+

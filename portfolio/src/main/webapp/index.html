@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>Lexi Delorey</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body onload="rotateImages()">
+  <body onload="onLoad()">
     <div id="header">
       <div id="nav">
         <ul>
@@ -86,6 +87,14 @@
       </div>
       <div id="travel-slides" class="color-box">
         <img name="slide" width="auto" height="500">
+      </div>
+    </div>
+    <div id="travel-map">
+      <div id="map"></div>
+      <div id="map-info" class="color-box">
+        <h2>Travel Map</h2>
+        <p>This is an interactive map containing markers for all the places
+            I visited in the pictures above!</p>
       </div>
     </div>
     <div id="comments">
