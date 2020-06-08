@@ -1,103 +1,206 @@
+:root {
+    --body-background: hsla(303, 50%, 50%, 0.116);
+    --box-background: rgba(146, 159, 235, 0.4);
+    --button-color: rgb(181, 181, 250);
+    --normal-text-color: white;
+    --header-text-color: rgba(128, 128, 128, 0.281);
+    --user-input-color: rgb(146, 159, 235);
+    --comment-text-color: rgb(153, 140, 140);
+}
+
 body {
-  background-color: hsla(303, 50%, 50%, 0.274);
+  background-color: var(--body-background);
+  color: var(-normal-text-color);
+  font-family: Helvetica;
 }
-.content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 800px;
+
+.color-box {
+  padding: 4%;
+  background-color: var(--box-background);
+}
+
+.color-box:hover h2 {
+  position: relative;
+  font-size: 40px;
+  transition: 0.7s  ease-in-out;
+}
+
+.button:hover {
+  background-color: var(--box-background);
+  color: var(--normal-text-color);
+}
+
+.button{
+  font-size: 20px;
+  font-family: Helvetica;
+  color: var(--normal-text-color);
+  padding: 5px 10px;
+  font-weight: 4000;
+  background-color: var(--button-color);
+  border: 1px solid var(--button-color);
+  border-radius: 3px;
+}
+
+#header {
+  display: flex;
+}
+
+#nav {
+  flex: 1;
+  padding: 3%;
+}
+
+#nav ul {
+  list-style-type: none;
+  background-color: var(--box-background);
   color: white;
-  font-family: Helvetica;
-}
-
-h2 {
-  font-size: 50px;
-  color: rgba(128, 128, 128, 0.411);
-  font-family: Helvetica;
-}
-
-h3 {
-  font-size: 25px;
-  color: rgba(128, 128, 128, 0.24);
-  font-family: Helvetica;
-}
-
-#greeting-container {
-  margin-top: 20px;
-}
-
-#fortune .button {
-  font-size: 10px;
-  padding: 14px 40px;
-  background-color: #CCCCFF;
-  font-family: Helvetica;
-  color: white;
-}
-
-.title {
-  font-size: 100px;
-  color: whitesmoke;
-  font-family: Helvetica;
-  margin-left: auto;
-  margin-right: auto;
-  width: 1000px;
-  float: center;
-}
-
-.profImage {
-  width=auto;
-  height=150px;
-  vertical-align: top;
-  float: right;
-}
-
-.travel-pic {
-  width=au
-  height=150px;
-  vertical-align: top;
-  float: right;
-}
-
-tr {
-  background: white;
-  border-bottom: 1px solid rgb(202, 194, 194);
-  margin-bottom: 5px;
-}
-
-table, td {
-  color: rgb(161, 163, 228);
-  font-family: "Lucida Console", Monaco, monospace
   text-align: center;
 }
 
-a:link th {
-  color: rgb(161, 163, 228);
+#nav li {
+  padding: 7%;
+  font-size: 20px;
 }
 
-textarea {
-    color: white;
-    background-color:rgb(146, 159, 235);
+#title {
+  font-size: 100px;
+  color: var(--header-text-color);
+  margin: 1.5% 3% 1.5% 1%; 
+  flex: 4;
+  text-align: center;
 }
 
-#comment-container h3 {
-    color: white;
-    font-size: 20px;
+#links {
+  flex: 1;
+  text-decoration: none;
 }
 
-#comment-container h6{
-    color: rgba(128, 128, 128, 0.411);
-    font-size: 10px;
-    margin: 0px;
-    padding: 0px;
+.fa {
+  font-size: 25px;
 }
 
-#comment-container h4 {
-    color: white;
-    font-family: "Times New Roman";
-    font-size: 30px;
-    margin: 10px;
-    padding: 5px;
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
 }
 
-#comment-container {
-  background-color: rgba(146, 159, 235, 0.4);
+.fa-instagram {
+  background: rgb(253, 160, 191);
+  color: white;
 }
+
+.fa-github {
+  background: black;
+  color: white;
+}
+
+#profile-image {
+  margin: 1.5% 3% 1.5% 1%; /* top, right, bottom, left */
+  text-align: center;
+  flex: 1;
+  color: var(--header-text-color);
+}
+
+#top-layer {
+  display: flex;
+  color: var(--normal-text-color);
+}
+
+#past-projects{ 
+  flex: 3;
+  margin: 1.5% 1% 1.5% 2.5%;
+}
+
+#about-me {
+  flex: 3;
+  margin: 1.5% 2.5% 1.5% 1%;
+}
+
+#bottom-layer {
+  display: flex;
+  color: var(--normal-text-color);
+}
+
+#travel-header {
+  flex: 2;
+  margin: 1.5% 1% 1.5% 2.5%;
+}
+
+#travel-header p {
+  font-size: 25px;
+}
+
+#travel-header h2 {
+  font-size: 40px;
+}
+
+#travel-header:hover h2 {
+  font-size: 55px;
+}
+
+#travel-slides {
+  flex: 4;
+  margin: 1.5% 2.5% 1.5% 1%;
+}
+
+#comments {
+  display: flex;
+  margin: 1.5% 3% 3% 2%;
+}
+
+#comment-info {
+  flex: 2;
+  color: var(--normal-text-color);
+  margin: 1.5% 1% 1.5% 2.5%;
+}
+
+.textarea {
+  background-color: var(--user-input-color);
+  color: var(--normal-text-color);
+  border: 1px solid var(--header-text-color);
+}
+
+#comment-display {
+  flex: 4;
+  flex-wrap: wrap;
+  color: var(--comment-text-color);
+  margin: 1.5% 2.5% 1.5% 1%;
+}
+
+.commentElement {
+  background-color: white;
+  position: relative;
+  margin: 1% 1.5% ;
+  padding: .5% 1%;
+  display: inline-block;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-height: 20%;
+  max-width: 20%;
+}
+
+#userName {
+  margin-bottom: 0;
+  color: var(--comment-text-color);
+}
+
+#dateTime {
+  margin-top: 0;
+  font-size: 8px;
+  color: var(--header-text-color);
+}
+
+bottom-of-comment {
+  display: inline-flex;
+  position: absolute;
+  width: 60%;
+}
+
+.comment-button {
+  font-size: 10px;
+  padding: 2px 4px;
+  margin: 2px;
+}
+
+
+

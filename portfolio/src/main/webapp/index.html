@@ -5,98 +5,117 @@
     <title>Lexi Delorey</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body onload="rotateImages()">
-    <table>
-      <tr>
-        <th><a href="#about-me">About Me</a></th>
-        <th><a href="#past-projects">Past Projects</a></th>
-        <th><a href="#travel">Travel!</a></th>
-        <th><a href="#fortune-container">Fortune Teller</a></th>
-        <th><a href="#comment-container">Comments</a></th>
-      </tr>
-    </table>
-    <h1 class="title">
-      <image class="profImage" src="./Images/Lexi.jpg" alt="Photo of Lexi Delorey" />
-      Lexi <br>
-      Delorey <br>
-    </h1>
-    <div id="fortune-container" class=></div>
-    <p>Click here to get a fortune!</p>
-    <button id ="fortune" class="button" onclick="addFortune()">Fortune</button>
-    <div id= "about-me" class="content">
-      <h2>About Me</h2>
-      <p>I am a rising sophomore at Brigham Young University, where I am studying
-      Computer Science with an emphasis on Data Science. <br><br>
-      During the school year I work as a research assistant in the 
-      <a href="https://pcc.cs.byu.edu/" target=_blank> Perception, Control, Cognition</a> 
-      Lab at my school. I have been researching applicatoins of the Q-learning
-      Algorithm in Reinforcement learning. 
-      Currently I am a Google STEP intern, which is the reason I am making this portfolio!
-      <br><br>
-      My favorite color is purple, my favorite food is Costco Pizza OR anything
-      with avocados in it, and in my free time I like to plan international 
-      trips, play video games, and read good books! <br>
+    <div id="header">
+      <div id="nav">
+        <ul>
+          <li><a href="#about-me">About Me</a></li>
+          <li><a href="#past-projects">Past Projects</a></li>
+          <li><a href="#travel">Travel!</a></li>
+          <li><a href="#comment-container">Comments</a></li>
+        </ul>
+      </div>
+      <br>
+      <h1 id="title">
+        Hi! I'm <br>
+        Lexi Delorey <br>
+        <div id="links">
+          <a href="https://www.linkedin.com/in/lexi-delorey-a677a81ab/" class="fa fa-linkedin"
+             target="_blank"></a>
+          <a href="https://github.com/lexidelorey" class="fa fa-github"
+             target="_blank"></a>
+          <a href="https://www.instagram.com/lexidelorey/" class="fa fa-instagram"
+             target="_blank"></a>
+        </div>
+      </h1>
+      <div id="profile-image">
+        <image class="image" src="./Images/Lexi.jpg" alt="Photo of Lexi Delorey" />
+        <p>Click here to get a fortune!</p>
+        <button id ="fortune" class="button" onclick="addFortune()">Fortune</button>
+        <div id="fortune-container"></div>
+      </div>
     </div>
-    <div id=past-projects class=content>
-      <h2>Past Projects</h2>
-        <p>Some of my past projects include:</p>
-          <ul>
-            <li>Designing a 2D maze and teaching an "agent" to navigate said maze
-                using the Q-learing algorithm</li>
-            <li>Singly and Doubly Linked Lists</li>
-            <li>Creading and Implementing Iterators in Linked Lists</li>
-            <li>Using STL Stack to convert expressions from infix to 
-                post/prefix and computing said expressions</li>
-            <li>Creating and implementing a Deque, Queue, Stack, and Vector to 
-                simulate a Roundhouse and Turntable for trains</li>
-            <li>Solving a user-input 3D maze using recursion</li>
-            <li>Creating a Binary Search Tree</li>
-            <li>Creating an Unordered Hashmap and Ordered Set to simulate Pokemon 
-                battles</li>
-            <li>Using Quicksort to sort data recursively</li>
-            <li>Reusing my Binary Search Tree to Create an AVL tree</li>
-          </ul>
-        <p>Please refer to my <a href="https://github.com/lexidelorey" targer=_blank>
-                GitHub</a> if you would like to see the code behind my projects</p>
+    <div id="top-layer">
+      <div id="past-projects" class="color-box">
+        <h2>Past Projects</h2>
+          <p>Some of my past projects include:</p>
+            <ul>
+              <li>Designing a 2D maze and teaching an "agent" to navigate said maze
+                  using the Q-learing algorithm</li>
+              <li>Singly and Doubly Linked Lists</li>
+              <li>Creading and Implementing Iterators in Linked Lists</li>
+              <li>Using STL Stack to convert expressions from infix to 
+                  post/prefix and computing said expressions</li>
+              <li>Creating and implementing a Deque, Queue, Stack, and Vector to 
+                  simulate a Roundhouse and Turntable for trains</li>
+              <li>Solving a user-input 3D maze using recursion</li>
+              <li>Creating a Binary Search Tree</li>
+              <li>Creating an Unordered Hashmap and Ordered Set to simulate Pokemon 
+                  battles</li>
+              <li>Using Quicksort to sort data recursively</li>
+              <li>Reusing my Binary Search Tree to Create an AVL tree</li>
+            </ul>
+          <p>Please refer to my <a href="https://github.com/lexidelorey" targer=_blank>
+             GitHub</a> if you would like to see the code behind my projects</p>
+      </div>
+      <div id= "about-me" class="color-box">
+        <h2>About Me</h2>
+        <p>I am a rising sophomore at Brigham Young University, where I am studying
+           Computer Science with an emphasis on Data Science. <br><br>
+           During the school year I work as a research assistant in the 
+           <a href="https://pcc.cs.byu.edu/" target=_blank> Perception, Control, Cognition</a> 
+           Lab at my school. I have been researching applicatoins of the Q-learning
+           Algorithm in Reinforcement learning. 
+           Currently I am a Google STEP intern, which is the reason I am making this portfolio!
+           <br><br>
+           My favorite color is purple, my favorite food is Costco Pizza OR anything
+           with avocados in it, and in my free time I like to plan international 
+           trips, play video games, and read good books! <br>
+      </div>
     </div>
-    <h1 class="title">
-      <img class="travel-pic" src="./Images/GoogleMilan.jpg" 
-           alt="Lexi at Google Milan"width="500" height="400">
-      I REALLY<br>
-      Love To<br>
-      Travel!
-    </h1>
-    <div id="travel" class="content">
-      <p>I've been a lot of cool places, and there are even more places
-         that I'm dying to visit! Enjoy some photos from my trips!
-         <br><br> Photos featured here are from trips to Italy, Thailand
-         and South Africa. Fair warning, there are a TON of elephant
-         pictures. I love elephants. </p>
-      <img name="slide" width="auto" height="500">
+    <div id="bottom-layer">
+      <div id="travel-header" class="color-box">
+        <h2>I Love To Travel!</h2>
+        <p>I've been a lot of cool places, and there are even more places
+           that I'm dying to visit! Enjoy some photos from my trips!
+            <br><br> Photos featured here are from trips to Italy, Thailand
+            and South Africa. Fair warning, there are a TON of elephant
+            pictures. I love elephants. </p>
+      </div>
+      <div id="travel-slides" class="color-box">
+        <img name="slide" width="auto" height="500">
+      </div>
     </div>
-    <div id="comments" class="content">
-      <h2>Comments</h2>
-      <p> I hope you enjoyed my portfolio! I would love to hear from you!
-          Please leave a comment below letting me know what you thought/
-          suggestions you may have for me!</p>
-      <form action="/data" method="POST" target="_self">
-        <textarea name="name" placeholder="Name..."></textarea>
-        <br>
-        <textarea name="comment" placeholder="Comment..."></textarea>
-        <br/><br/>
-        <input class="submit" type="submit" value="Submit">
-      </form>
-      <h3>Other Comments:</h3>        
-      <p>Choose how many comments you would like displayed:</p>
-      <button onclick="deleteComments()">Delete Comments</button>
+    <div id="comments">
+      <div id="comment-info" class="color-box">
+        <h2>Comments</h2>
+        <p> I hope you enjoyed my portfolio! I would love to hear from you!
+            Please leave a comment below letting me know what you thought/
+            suggestions you may have for me!</p>
+        <form action="/data" method="POST" target="_self">
+          <textarea name="name" placeholder="Name..." class="textarea"></textarea>
+          <br>
+          <textarea name="comment" placeholder="Comment..." class="textarea"></textarea>
+          <br/><br/>
+          <input class="button" type="submit" value="Submit">
+        </form>        
+        <p>Choose how many comments you would like displayed:</p>
         <form>
-          <label for="number-comments">(Between 1 and 30):</label>
           <input type="number" id="number-comments" name="number-comments" 
-                 min="1" max="30">
-          <input class="submit" type="button" value="Submit" onclick="getComments()">
+                 class="textarea" min="1" max="30">
         </form>
+        <p>Enter a number between 0 and 30</p>
+        <input class="button" type="button" value="Submit" onclick="getComments()">
+        <p> If you are unhappy with all these comments, feel free to delete them all!
+            Every single one! That's fine... </p>
+          <button class = "button" onclick="deleteComments()">Delete Comments</button>
+      </div>
+      <div id="comment-display" class="color-box">
+        <h2>Other Comments:</h2>
         <div id="comment-container"></div>
+      </div>
     </div>
   </body>
 </html>
