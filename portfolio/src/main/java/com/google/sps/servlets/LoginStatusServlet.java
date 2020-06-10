@@ -7,30 +7,42 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.gson.Gson;
 
 @WebServlet("/login-status")
 public class LoginStatusServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html");
 
     UserService userService = UserServiceFactory.getUserService();
-    if (userService.isUserLoggedIn()) {
+    Boolean loggedIn = userService.isUserLoggedIn();
+
+    String json = "{";
+
+    if (loggedIn) {
       String userEmail = userService.getCurrentUser().getEmail();
       String urlToRedirectToAfterUserLogsOut = "/login-status";
       String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
 
-      response.getWriter().println("<p>Hello " + userEmail + "!</p>");
-      response.getWriter().println("<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
-    } 
-    else {
+      json += "\"loggedIn\": \"true\"";
+      json += ", ";
+      json += "\"logoutUrl\": " + "\"" + logoutUrl + "\"";
+      json += "}"; 
+
+      response.setContentType("application/json;");
+      response.getWriter().println(json);
+    } else {
       String urlToRedirectToAfterUserLogsIn = "/login-status";
       String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
 
-      response.getWriter().println("<p>Hello there! You need to log in " +
-               "to post comments on this webpage.</p>");
-      response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
+      json += "\"loggedIn\": \"false\"";
+      json += ", ";
+      json += "\"loginUrl\": " + "\"" + loginUrl + "\"";
+      json += "}"; 
+
+      response.setContentType("application/json;");
+      response.getWriter().println(json);
     }
   }
 }

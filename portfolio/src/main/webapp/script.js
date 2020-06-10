@@ -46,7 +46,35 @@ function rotateImages() {
   setTimeout("rotateImages()", time);
 }
 
+function showHideCommentForm() {
+  fetch('/login-status')
+    .then(response => response.json())
+    .then((json) => {
+      if (json['loggedIn'].localeCompare("true")) {
+        loginURL = json['loginUrl'];
+        document.getElementById("comment-form").innerHTML = "<p>If you would like to comment" +
+          " please sign in using the link below: <br><br>" +
+          "<a href=\"" + loginURL + "\">Login</a></p>";
+      } else {
+        document.getElementById("comment-form").style.display = "block;"
+      }
+    });
+}
+
 function getComments() {
+  fetch('/data') 
+    .then(response => response.json())
+    .then((comments) => {
+      commentsList = document.getElementById('comment-container');
+      commentsList.innerHTML = '';
+      var i;
+      for (i = 0; i < comments.length; i++) {
+        commentsList.appendChild(createCommentElement(comments[i]));
+      }
+  });
+}
+
+function getMaxComments() {
   var value = document.getElementById('number-comments').value
   fetch('/data') 
     .then(response => response.json())
@@ -303,5 +331,7 @@ function createMap() {
 function onLoad() {
   createMap();
   rotateImages();
+  getComments();
+  showHideCommentForm();
 }
 

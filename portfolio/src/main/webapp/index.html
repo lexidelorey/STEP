@@ -100,26 +100,28 @@
     <div id="comments">
       <div id="comment-info" class="color-box">
         <h2>Comments</h2>
-        <p> I hope you enjoyed my portfolio! I would love to hear from you!
-            Please leave a comment below letting me know what you thought/
-            suggestions you may have for me!</p>
-        <form action="/data" method="POST" target="_self">
-          <textarea name="name" placeholder="Name..." class="textarea"></textarea>
-          <br>
-          <textarea name="comment" placeholder="Comment..." class="textarea"></textarea>
-          <br/><br/>
-          <input class="button" type="submit" value="Submit">
-        </form>        
-        <p>Choose how many comments you would like displayed:</p>
-        <form>
-          <input type="number" id="number-comments" name="number-comments" 
-                 class="textarea" min="1" max="30">
-        </form>
-        <p>Enter a number between 0 and 30</p>
-        <input class="button" type="button" value="Submit" onclick="getComments()">
-        <p> If you are unhappy with all these comments, feel free to delete them all!
-            Every single one! That's fine... </p>
-          <button class = "button" onclick="deleteComments()">Delete Comments</button>
+        <div id="comment-form">
+          <p> I hope you enjoyed my portfolio! I would love to hear from you!
+              Please leave a comment below letting me know what you thought/
+              suggestions you may have for me!</p>
+          <form action="/data" method="POST" target="_self">
+            <textarea name="name" placeholder="Name..." class="textarea"></textarea>
+            <br>
+            <textarea name="comment" placeholder="Comment..." class="textarea"></textarea>
+            <br/><br/>
+            <input class="button" type="submit" value="Submit">
+          </form>        
+          <p>Choose how many comments you would like displayed:</p>
+          <form>
+            <input type="number" id="number-comments" name="number-comments" 
+                   class="textarea" min="0" max="30">
+          </form>
+          <p>Enter a number between 0 and 30</p>
+          <input class="button" type="button" value="Submit" onclick="getMaxComments()">
+          <p> If you are unhappy with all these comments, feel free to delete them all!
+              Every single one! That's fine... </p>
+            <button class = "button" onclick="deleteComments()">Delete Comments</button>
+        </div>
       </div>
       <div id="comment-display" class="color-box">
         <h2>Other Comments:</h2>
