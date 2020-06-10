@@ -96,9 +96,9 @@ function createCommentElement(comment) {
   const commentElement = document.createElement('div');
   commentElement.className = 'commentElement';
 
-  const userName = document.createElement('h3');
-  userName.id = 'userName';
-  userName.innerText = comment.name;
+  const email = document.createElement('h3');
+  email.id = 'email';
+  email.innerText = comment.email;
 
   const dateTime = document.createElement('p');
   dateTime.id = 'dateTime';
@@ -121,7 +121,7 @@ function createCommentElement(comment) {
     commentElement.remove();
   });
 
-  commentElement.appendChild(userName);
+  commentElement.appendChild(email);
   commentElement.appendChild(dateTime);
   commentElement.appendChild(commentBody);
   commentElement.appendChild(bottomOfComment);
