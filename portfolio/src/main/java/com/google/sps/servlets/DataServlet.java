@@ -74,7 +74,7 @@ public class DataServlet extends HttpServlet {
     String name = request.getParameter(NAME_PARAM);
     String userComment = request.getParameter(COMMENT_PARAM_NAME);
     SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-    format.setTimeZone(TimeZone.getTimeZone("PST"));
+    format.setTimeZone(TimeZone.getTimeZone("PDT"));
     Date dateTimeCreated = new Date(System.currentTimeMillis());
 
     Entity commentEntity = new Entity(COMMENT_ENTITY_KEY);
