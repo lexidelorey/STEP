@@ -16,6 +16,8 @@ package com.google.sps.servlets;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -40,6 +42,7 @@ import static constants.DataStoreHelper.TIME_PROPERTY_NAME;
 import static constants.DataStoreHelper.COMMENT_PARAM_NAME;
 import static constants.DataStoreHelper.NAME_PARAM;
 import static constants.DataStoreHelper.NAME_PROPERTY;
+import status constants.DataStoreHelper.EMAIL_PROPERTY;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -58,8 +61,9 @@ public class DataServlet extends HttpServlet {
       String name = (String) entity.getProperty(NAME_PROPERTY);
       String comment = (String) entity.getProperty(COMMENT_PROPERTY_NAME);
       Date dateTimeCreated = (Date) entity.getProperty(TIME_PROPERTY_NAME);
+      String email = (String) entity.getProperty(EMAIL_PROPERTY);
 
-      Comment userComment = new Comment(id, name, comment, dateTimeCreated);
+      Comment userComment = new Comment(id, name, comment, dateTimeCreated, email);
       comments.add(userComment);
     }
 
@@ -71,8 +75,12 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    UserService userService = UserServiceFactory.getUserService();
+
+    String email = userService.getCurrentUser().getEmail();
     String name = request.getParameter(NAME_PARAM);
     String userComment = request.getParameter(COMMENT_PARAM_NAME);
+    
     SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     format.setTimeZone(TimeZone.getTimeZone("PDT"));
     Date dateTimeCreated = new Date(System.currentTimeMillis());
@@ -81,6 +89,7 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty(NAME_PROPERTY, name);
     commentEntity.setProperty(COMMENT_PROPERTY_NAME, userComment);
     commentEntity.setProperty(TIME_PROPERTY_NAME, dateTimeCreated);
+    commentEntity.setProperty(EMAIL_PROPERTY, email);
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
