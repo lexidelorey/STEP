@@ -42,7 +42,7 @@ import static constants.DataStoreHelper.TIME_PROPERTY_NAME;
 import static constants.DataStoreHelper.COMMENT_PARAM_NAME;
 import static constants.DataStoreHelper.NAME_PARAM;
 import static constants.DataStoreHelper.NAME_PROPERTY;
-import status constants.DataStoreHelper.EMAIL_PROPERTY;
+import static constants.DataStoreHelper.EMAIL_PROPERTY;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
