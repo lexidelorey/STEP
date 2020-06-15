@@ -176,10 +176,6 @@ body {
   font-size: 55px;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 48a48a60e0fee4d09b45f4400aceea8bc60d5c6e
 #comments {
   display: flex;
   margin: 1.5% 3% 3% 2%;
@@ -216,7 +212,7 @@ body {
   max-width: 20%;
 }
 
-#email {
+#nickname {
   margin-bottom: 0;
   color: var(--comment-text-color);
 }
