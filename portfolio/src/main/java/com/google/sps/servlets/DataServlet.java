@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.sps.data.Comment;
+import com.google.sps.data.Queries;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -41,6 +42,7 @@ import static constants.DataStoreHelper.COMMENT_PROPERTY_NAME;
 import static constants.DataStoreHelper.TIME_PROPERTY_NAME;
 import static constants.DataStoreHelper.COMMENT_PARAM_NAME;
 import static constants.DataStoreHelper.NICKNAME_PROPERTY;
+import static constants.DataStoreHelper.LIKES_PROPERTY;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -59,8 +61,9 @@ public class DataServlet extends HttpServlet {
       String nickname = (String) entity.getProperty(NICKNAME_PROPERTY);
       String comment = (String) entity.getProperty(COMMENT_PROPERTY_NAME);
       Date dateTimeCreated = (Date) entity.getProperty(TIME_PROPERTY_NAME);
+      long likes = (long) entity.getProperty(LIKES_PROPERTY);
 
-      Comment userComment = new Comment(id, nickname, comment, dateTimeCreated);
+      Comment userComment = new Comment(id, nickname, comment, dateTimeCreated, likes);
       comments.add(userComment);
     }
 
@@ -74,9 +77,10 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
 
-    String nickname = getUserNickname(userService.getCurrentUser().getUserId());
+    Queries query = new Queries();
+    String nickname = query.getUserNickname(userService.getCurrentUser().getUserId());
     String userComment = request.getParameter(COMMENT_PARAM_NAME);
-    
+
     SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     format.setTimeZone(TimeZone.getTimeZone("PDT"));
     Date dateTimeCreated = new Date(System.currentTimeMillis());
@@ -85,24 +89,11 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty(COMMENT_PROPERTY_NAME, userComment);
     commentEntity.setProperty(TIME_PROPERTY_NAME, dateTimeCreated);
     commentEntity.setProperty(NICKNAME_PROPERTY, nickname);
+    commentEntity.setProperty(LIKES_PROPERTY, 0);
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
     response.sendRedirect("/index.html"); 
-  }
-
-  private String getUserNickname(String id) {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Query query =
-        new Query("UserInfo")
-            .setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
-    PreparedQuery results = datastore.prepare(query);
-    Entity entity = results.asSingleEntity();
-    if (entity == null) {
-      return null;
-    }
-    String nickname = (String) entity.getProperty("nickname");
-    return nickname;
   }
 }

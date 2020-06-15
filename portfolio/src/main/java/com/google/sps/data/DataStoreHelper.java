@@ -8,4 +8,5 @@ public final class DataStoreHelper {
   public static String TIME_PROPERTY_NAME = "dateTimeCreated";
   public static String COMMENT_PARAM_NAME = "comment";
   public static String NICKNAME_PROPERTY = "nickname";
+  public static String LIKES_PROPERTY = "likes";
 }
