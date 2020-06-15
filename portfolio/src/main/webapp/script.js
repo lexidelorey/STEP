@@ -48,10 +48,6 @@ function rotateImages() {
   setTimeout("rotateImages()", time);
 }
 
-<<<<<<< Updated upstream
-function getComments() {
-  var value = document.getElementById('number-comments').value
-=======
 //fetches login status and hides/displays proper part of comment form 
 function showHideCommentForm() {
   fetch('/login-status')
@@ -80,19 +76,11 @@ let maxComments = -1;
 
 //loads comments based on user input (or all if no number has been specified)
 function getComments() {
->>>>>>> Stashed changes
   fetch('/data') 
     .then(response => response.json())
     .then((comments) => {
       commentsList = document.getElementById('comment-container');
       commentsList.innerHTML = '';
-<<<<<<< Updated upstream
-      var i;
-      for (i = 0; i < value; i++) {
-        commentsList.appendChild(createCommentElement(comments[i]));
-      }
-  });
-=======
       if (maxComments == -1 || maxComments > comments.length) {
         maxComments = comments.length;
       }
@@ -109,7 +97,6 @@ function getComments() {
 function getMaxComments() {
   maxComments = document.getElementById('number-comments').value;
   getComments();
->>>>>>> Stashed changes
 }
 
 //creates a comment element 
@@ -117,9 +104,9 @@ function createCommentElement(comment) {
   const commentElement = document.createElement('div');
   commentElement.className = 'commentElement';
 
-  const userName = document.createElement('h3');
-  userName.id = 'userName';
-  userName.innerText = comment.name;
+  const nickname = document.createElement('h3');
+  nickname.id ="nickname";
+  nickname.innerText = comment.nickname;
 
   const dateTime = document.createElement('p');
   dateTime.id = 'dateTime';
@@ -173,12 +160,8 @@ function createCommentElement(comment) {
   bottomOfComment.appendChild(displayLikes);
   bottomOfComment.appendChild(buttons);
 
-<<<<<<< Updated upstream
-  commentElement.appendChild(userName);
-=======
   
   commentElement.appendChild(nickname);
->>>>>>> Stashed changes
   commentElement.appendChild(dateTime);
   commentElement.appendChild(commentBody);
   commentElement.appendChild(bottomOfComment);
@@ -212,8 +195,6 @@ function deleteSingleComment(comment) {
     .then(getComments());
 }
 
-<<<<<<< Updated upstream
-=======
 //creates a map using Maps API
 function createMap() {
   var myLatlng = new google.maps.LatLng(13.7563, 100.5018);
@@ -411,5 +392,3 @@ function onLoad() {
   getComments();
   showHideCommentForm();
 }
-
->>>>>>> Stashed changes
