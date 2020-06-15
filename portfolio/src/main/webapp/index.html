@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>Lexi Delorey</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNcGaKmWLRb_rvQf-hIAVSChe6TkZu-1Y"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body onload="rotateImages()">
+  <body onload="onLoad()">
     <div id="header">
       <h1 id="title">
         Hi! I'm <br>
@@ -82,31 +83,17 @@
         <img name="slide" width="auto" height="500">
       </div>
     </div>
+    <div id="travel-map">
+      <div id="map"></div>
+      <div id="map-info" class="color-box">
+        <h2>Travel Map</h2>
+        <p>This is an interactive map containing markers for all the places
+            I visited in the pictures above!</p>
+      </div>
+    </div>
     <div id="comments">
       <div id="comment-info" class="color-box">
         <h2>Comments</h2>
-<<<<<<< Updated upstream
-        <p> I hope you enjoyed my portfolio! I would love to hear from you!
-            Please leave a comment below letting me know what you thought/
-            suggestions you may have for me!</p>
-        <form action="/data" method="POST" target="_self">
-          <textarea name="name" placeholder="Name..." class="textarea"></textarea>
-          <br>
-          <textarea name="comment" placeholder="Comment..." class="textarea"></textarea>
-          <br/><br/>
-          <input class="button" type="submit" value="Submit">
-        </form>        
-        <p>Choose how many comments you would like displayed:</p>
-        <form>
-          <input type="number" id="number-comments" name="number-comments" 
-                 class="textarea" min="1" max="30">
-        </form>
-        <p>Enter a number between 0 and 30</p>
-        <input class="button" type="button" value="Submit" onclick="getComments()">
-        <p> If you are unhappy with all these comments, feel free to delete them all!
-            Every single one! That's fine... </p>
-          <button class = "button" onclick="deleteComments()">Delete Comments</button>
-=======
         <div id="comment-form">
           <div id="greeting"></div>
           <form action="/data" method="POST" target="_self">
@@ -126,7 +113,6 @@
             <button class = "button" onclick="deleteAllComments()">Delete Comments</button>
           <div id="logout"></div>
         </div>
->>>>>>> Stashed changes
       </div>
       <div id="comment-display" class="color-box">
         <h2>Other Comments:</h2>
