@@ -15,6 +15,7 @@ function addFortune() {
   fortuneContainer.innerText = fortune;
 }
 
+//images for slideshow
 var i = 0;
 var images = [];
 var time = 3000;
@@ -33,6 +34,7 @@ images[10] = "./Images/EleWash.jpg";
 images[11] = "./Images/Table.jpg";
 images[12] = "./Images/Giraffe.jpg";
 
+//displays and rotates through slideshow images every 3 seconds
 function rotateImages() {
   document.slide.src = images[i];
   
@@ -46,6 +48,7 @@ function rotateImages() {
   setTimeout("rotateImages()", time);
 }
 
+//fetches login status and hides/displays proper part of comment form 
 function showHideCommentForm() {
   fetch('/login-status')
     .then(response => response.json())
@@ -56,42 +59,47 @@ function showHideCommentForm() {
           " please sign in using the link below: <br><br>" + 
           "<a href=\"" + loginURL + "\">Login</a></p>";
       } else {
-        document.getElementById("comment-form").style.display = "block;"
+        document.getElementById("greeting").innerHTML = "<p> Hello " + json['nickname'] +
+          ", I hope you enjoyed my portfolio! I would love to hear from you! " +
+          "Please leave a comment below letting me know what you thought/" +
+          "suggestions you may have for me!</p>";
+        document.getElementById("comment-form").style.display = "block";
         logoutURL = json['logoutUrl'];
         document.getElementById("logout").innerHTML = "<p>" +
         "<a href=\"" + logoutURL + "\">Sign out</a><br><br>" +
-        "<a href=\'/nickname\'>Change Nickname</a></p>"
+        "<a href=\'/nickname\'>Change Nickname</a></p>";
       }
     });
 }
 
+let maxComments = -1;
+
+//loads comments based on user input (or all if no number has been specified)
 function getComments() {
   fetch('/data') 
     .then(response => response.json())
     .then((comments) => {
       commentsList = document.getElementById('comment-container');
       commentsList.innerHTML = '';
+      if (maxComments == -1 || maxComments > comments.length) {
+        maxComments = comments.length;
+      }
       var i;
-      for (i = 0; i < comments.length; i++) {
+      for (i = 0; i < maxComments; i++) {
         commentsList.appendChild(createCommentElement(comments[i]));
       }
+      document.getElementById("comment-count").innerHTML = "<p>Comments Showing: " + maxComments + 
+          "<br>Total Comments: " + comments.length;
   });
 }
 
+//sets max number of comments to load
 function getMaxComments() {
-  var value = document.getElementById('number-comments').value
-  fetch('/data') 
-    .then(response => response.json())
-    .then((comments) => {
-      commentsList = document.getElementById('comment-container');
-      commentsList.innerHTML = '';
-      var i;
-      for (i = 0; i < value; i++) {
-        commentsList.appendChild(createCommentElement(comments[i]));
-      }
-  });
+  maxComments = document.getElementById('number-comments').value;
+  getComments();
 }
 
+//creates a comment element 
 function createCommentElement(comment) {
   const commentElement = document.createElement('div');
   commentElement.className = 'commentElement';
@@ -105,14 +113,41 @@ function createCommentElement(comment) {
   dateTime.innerText = comment.dateTime
 
   const commentBody = document.createElement('p');
-  commentBody.id = 'commentBody';
+  commentBody.id = 'comment-body';
   commentBody.innerText = comment.comment;
 
   const bottomOfComment = document.createElement('div');
   bottomOfComment.id = 'bottom-of-comment';
 
+  const displayLikes = document.createElement('div');
+  displayLikes.id = "display-likes";
+
+  if (comment.likes >= 1) {
+    const likesCountIcon = document.createElement('i');
+    likesCountIcon.className = 'fa fa-thumbs-o-up';
+    likesCountIcon.id = 'thumbs-up-icon';
+    displayLikes.appendChild(likesCountIcon);
+    const likesCount = document.createElement('p');
+    likesCount.innerText = comment.likes;
+    likesCount.id = 'likes';
+    displayLikes.appendChild(likesCount);
+  } 
+  
+  const buttons = document.createElement('div');
+  buttons.id = "comment-buttons";
+
+  const likesButton = document.createElement('button');
+  likesButton.className = 'button comment-button';
+  const likeIcon = document.createElement('i');
+  likeIcon.className = 'fa fa-thumbs-o-up';
+  likesButton.appendChild(likeIcon);
+  likesButton.addEventListener('click', () => {
+    addCommentLike(comment);
+  }); 
+  buttons.appendChild(likesButton);
+
   const deleteButton = document.createElement('button');
-  deleteButton.className = 'button comment-button';
+  deleteButton.className = 'comment-button button';
   const deleteIcon = document.createElement('i');
   deleteIcon.className = 'fa fa-eraser';
   deleteButton.appendChild(deleteIcon);
@@ -120,21 +155,38 @@ function createCommentElement(comment) {
     deleteSingleComment(comment);
     commentElement.remove();
   });
+  buttons.appendChild(deleteButton);
+
+  bottomOfComment.appendChild(displayLikes);
+  bottomOfComment.appendChild(buttons);
 
   commentElement.appendChild(nickname);
   commentElement.appendChild(dateTime);
   commentElement.appendChild(commentBody);
   commentElement.appendChild(bottomOfComment);
-  commentElement.appendChild(deleteButton);
   return commentElement;
 }
 
+
+function addCommentLike(comment) {
+  const params = new URLSearchParams();
+  params.append("id", comment.id);
+  params.append("likes", comment.likes + 1);
+  const request = new Request('/likes', {method: 'POST', body: params});
+  fetch(request)
+    .then(getComments);
+}
+
+
+//deletes every comment by sending POST request to delete all comments 
+// servlet
 function deleteAllComments() {
     const request = new Request('/delete-all-comments', {method: 'POST'});
     fetch(request)
       .then(getComments());
 } 
 
+//deletes a single comment 
 function deleteSingleComment(comment) {
   const params = new URLSearchParams();
   params.append('id', comment.id);
@@ -142,6 +194,7 @@ function deleteSingleComment(comment) {
     .then(getComments());
 }
 
+//creates a map using Maps API
 function createMap() {
   var myLatlng = new google.maps.LatLng(13.7563, 100.5018);
   var mapOptions = {
@@ -331,10 +384,10 @@ function createMap() {
 
 }
 
+//calls all functions that must run at page onload
 function onLoad() {
   createMap();
   rotateImages();
   getComments();
   showHideCommentForm();
 }
-
