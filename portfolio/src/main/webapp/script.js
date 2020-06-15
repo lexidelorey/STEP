@@ -160,7 +160,6 @@ function createCommentElement(comment) {
   bottomOfComment.appendChild(displayLikes);
   bottomOfComment.appendChild(buttons);
 
-  
   commentElement.appendChild(nickname);
   commentElement.appendChild(dateTime);
   commentElement.appendChild(commentBody);
