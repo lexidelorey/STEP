@@ -9,15 +9,6 @@
   </head>
   <body onload="rotateImages()">
     <div id="header">
-      <div id="nav">
-        <ul>
-          <li><a href="#about-me">About Me</a></li>
-          <li><a href="#past-projects">Past Projects</a></li>
-          <li><a href="#travel">Travel!</a></li>
-          <li><a href="#comment-container">Comments</a></li>
-        </ul>
-      </div>
-      <br>
       <h1 id="title">
         Hi! I'm <br>
         Lexi Delorey <br>
@@ -30,12 +21,6 @@
              target="_blank"></a>
         </div>
       </h1>
-      <div id="profile-image">
-        <image class="image" src="./Images/Lexi.jpg" alt="Photo of Lexi Delorey" />
-        <p>Click here to get a fortune!</p>
-        <button id ="fortune" class="button" onclick="addFortune()">Fortune</button>
-        <div id="fortune-container"></div>
-      </div>
     </div>
     <div id="top-layer">
       <div id="past-projects" class="color-box">
@@ -61,18 +46,27 @@
              GitHub</a> if you would like to see the code behind my projects</p>
       </div>
       <div id= "about-me" class="color-box">
-        <h2>About Me</h2>
-        <p>I am a rising sophomore at Brigham Young University, where I am studying
-           Computer Science with an emphasis on Data Science. <br><br>
-           During the school year I work as a research assistant in the 
-           <a href="https://pcc.cs.byu.edu/" target=_blank> Perception, Control, Cognition</a> 
-           Lab at my school. I have been researching applicatoins of the Q-learning
-           Algorithm in Reinforcement learning. 
-           Currently I am a Google STEP intern, which is the reason I am making this portfolio!
-           <br><br>
-           My favorite color is purple, my favorite food is Costco Pizza OR anything
-           with avocados in it, and in my free time I like to plan international 
-           trips, play video games, and read good books! <br>
+        <div id="content">
+          <h2>About Me</h2>
+          <p>I am a rising sophomore at Brigham Young University, where I am studying
+            Computer Science with an emphasis on Data Science. <br><br>
+            During the school year I work as a research assistant in the 
+            <a href="https://pcc.cs.byu.edu/" target=_blank> Perception, Control, Cognition</a> 
+            Lab at my school. I have been researching applicatoins of the Q-learning
+            Algorithm in Reinforcement learning. 
+            Currently I am a Google STEP intern, which is the reason I am making this portfolio!
+            <br><br>
+            My favorite color is purple, my favorite food is Costco Pizza OR anything
+            with avocados in it, and in my free time I like to plan international 
+            trips, play video games, and read good books! <br>
+        </div>
+        <div id="profile-image">
+          <image class="image" src="./Images/Lexi.jpg" alt="Photo of Lexi Delorey" 
+                 width="300" height="300"/>
+          <p>Click here to get a fortune!</p>
+          <button id ="fortune" class="button" onclick="addFortune()">Fortune</button>
+          <div id="fortune-container"></div>
+        </div>
       </div>
     </div>
     <div id="bottom-layer">
@@ -91,6 +85,7 @@
     <div id="comments">
       <div id="comment-info" class="color-box">
         <h2>Comments</h2>
+<<<<<<< Updated upstream
         <p> I hope you enjoyed my portfolio! I would love to hear from you!
             Please leave a comment below letting me know what you thought/
             suggestions you may have for me!</p>
@@ -111,6 +106,27 @@
         <p> If you are unhappy with all these comments, feel free to delete them all!
             Every single one! That's fine... </p>
           <button class = "button" onclick="deleteComments()">Delete Comments</button>
+=======
+        <div id="comment-form">
+          <div id="greeting"></div>
+          <form action="/data" method="POST" target="_self">
+            <textarea name="comment" placeholder="Comment..." class="textarea"></textarea>
+            <br/><br/>
+            <input class="button" type="submit" value="Submit">
+          </form>        
+          <p>Choose how many comments you would like displayed:</p>
+          <form>
+            <input type="number" id="number-comments" name="number-comments" 
+                   class="textarea" min="0">
+          </form>
+          <div id="comment-count"></div>
+          <input class="button" type="button" value="Submit" onclick="getMaxComments()">
+          <p> If you are unhappy with all these comments, feel free to delete them all!
+              Every single one! That's fine... </p>
+            <button class = "button" onclick="deleteAllComments()">Delete Comments</button>
+          <div id="logout"></div>
+        </div>
+>>>>>>> Stashed changes
       </div>
       <div id="comment-display" class="color-box">
         <h2>Other Comments:</h2>
