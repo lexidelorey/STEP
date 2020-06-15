@@ -210,7 +210,7 @@ body {
   max-width: 20%;
 }
 
-#email {
+#nickname {
   margin-bottom: 0;
   color: var(--comment-text-color);
 }

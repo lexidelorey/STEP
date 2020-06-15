@@ -58,9 +58,9 @@ function showHideCommentForm() {
       } else {
         document.getElementById("comment-form").style.display = "block;"
         logoutURL = json['logoutUrl'];
-        document.getElementById("logout").innerHTML = "<p>You may sign out " +
-        "using the link below: <br><br>" +
-        "<a href=\"" + logoutURL + "\">Logout</a></p>";
+        document.getElementById("logout").innerHTML = "<p>" +
+        "<a href=\"" + logoutURL + "\">Sign out</a><br><br>" +
+        "<a href=\'/nickname\'>Change Nickname</a></p>"
       }
     });
 }
@@ -96,9 +96,9 @@ function createCommentElement(comment) {
   const commentElement = document.createElement('div');
   commentElement.className = 'commentElement';
 
-  const email = document.createElement('h3');
-  email.id = 'email';
-  email.innerText = comment.email;
+  const nickname = document.createElement('h3');
+  nickname.id ="nickname";
+  nickname.innerText = comment.nickname;
 
   const dateTime = document.createElement('p');
   dateTime.id = 'dateTime';
@@ -121,7 +121,7 @@ function createCommentElement(comment) {
     commentElement.remove();
   });
 
-  commentElement.appendChild(email);
+  commentElement.appendChild(nickname);
   commentElement.appendChild(dateTime);
   commentElement.appendChild(commentBody);
   commentElement.appendChild(bottomOfComment);
@@ -143,7 +143,6 @@ function deleteSingleComment(comment) {
 }
 
 function createMap() {
-  
   var myLatlng = new google.maps.LatLng(13.7563, 100.5018);
   var mapOptions = {
     zoom: 2,
