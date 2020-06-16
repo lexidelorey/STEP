@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.sps.data.Comment;
+import com.google.sps.data.Queries;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -40,9 +41,8 @@ import static constants.DataStoreHelper.COMMENT_ENTITY_KEY;
 import static constants.DataStoreHelper.COMMENT_PROPERTY_NAME;
 import static constants.DataStoreHelper.TIME_PROPERTY_NAME;
 import static constants.DataStoreHelper.COMMENT_PARAM_NAME;
-import static constants.DataStoreHelper.NAME_PARAM;
-import static constants.DataStoreHelper.NAME_PROPERTY;
-import static constants.DataStoreHelper.EMAIL_PROPERTY;
+import static constants.DataStoreHelper.NICKNAME_PROPERTY;
+import static constants.DataStoreHelper.LIKES_PROPERTY;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -58,12 +58,12 @@ public class DataServlet extends HttpServlet {
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String name = (String) entity.getProperty(NAME_PROPERTY);
+      String nickname = (String) entity.getProperty(NICKNAME_PROPERTY);
       String comment = (String) entity.getProperty(COMMENT_PROPERTY_NAME);
       Date dateTimeCreated = (Date) entity.getProperty(TIME_PROPERTY_NAME);
-      String email = (String) entity.getProperty(EMAIL_PROPERTY);
+      long likes = (long) entity.getProperty(LIKES_PROPERTY);
 
-      Comment userComment = new Comment(id, name, comment, dateTimeCreated, email);
+      Comment userComment = new Comment(id, nickname, comment, dateTimeCreated, likes);
       comments.add(userComment);
     }
 
@@ -77,24 +77,23 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
 
-    String email = userService.getCurrentUser().getEmail();
-    String name = request.getParameter(NAME_PARAM);
+    Queries query = new Queries();
+    String nickname = query.getUserNickname(userService.getCurrentUser().getUserId());
     String userComment = request.getParameter(COMMENT_PARAM_NAME);
-    
+
     SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     format.setTimeZone(TimeZone.getTimeZone("PDT"));
     Date dateTimeCreated = new Date(System.currentTimeMillis());
 
     Entity commentEntity = new Entity(COMMENT_ENTITY_KEY);
-    commentEntity.setProperty(NAME_PROPERTY, name);
     commentEntity.setProperty(COMMENT_PROPERTY_NAME, userComment);
     commentEntity.setProperty(TIME_PROPERTY_NAME, dateTimeCreated);
-    commentEntity.setProperty(EMAIL_PROPERTY, email);
+    commentEntity.setProperty(NICKNAME_PROPERTY, nickname);
+    commentEntity.setProperty(LIKES_PROPERTY, 0);
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
     response.sendRedirect("/index.html"); 
   }
-
 }
