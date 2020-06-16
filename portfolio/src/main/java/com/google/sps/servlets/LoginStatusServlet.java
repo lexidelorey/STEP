@@ -45,7 +45,6 @@ public class LoginStatusServlet extends HttpServlet {
       Queries query = new Queries();
       String nickname = query.getUserNickname(userService.getCurrentUser().getUserId());
       json.put("nickname", nickname);
-
     }
 
     response.setContentType("application/json;");
