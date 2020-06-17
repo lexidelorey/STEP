@@ -7,6 +7,7 @@ public final class Comment {
   private String nickname;
   private String comment;
   private Date dateTime;
+  private long likes;
 
   public Comment(long id, String nickname, String comment, Date dateTime, long likes) {
     this.id = id;

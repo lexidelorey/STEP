@@ -22,4 +22,5 @@ public final class Queries {
     }
     return (String) entity.getProperty("nickname");
   }
+}
 
